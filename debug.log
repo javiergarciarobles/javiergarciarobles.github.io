@@ -1,3 +1,9 @@
 [0205/210905.479:ERROR:process_info.cc(632)] range at 0xf8cd3c0600000000, size 0x212 fully unreadable
 [0205/210905.480:ERROR:process_info.cc(632)] range at 0xf8cd3c2600000000, size 0x212 fully unreadable
 [0205/210905.480:ERROR:process_info.cc(632)] range at 0x0, size 0x212 fully unreadable
+[0207/192810.592:ERROR:crash_report_database_win.cc(427)] unexpected header
+[0207/193810.575:ERROR:crash_report_database_win.cc(427)] unexpected header
+[0207/193810.575:ERROR:crash_report_database_win.cc(427)] unexpected header
+[0207/194310.574:ERROR:crash_report_database_win.cc(427)] unexpected header
+[0207/195810.565:ERROR:crash_report_database_win.cc(427)] unexpected header
+[0207/201310.561:ERROR:crash_report_database_win.cc(427)] unexpected header
