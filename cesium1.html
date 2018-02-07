@@ -1,14 +1,14 @@
 <html lang="es">
           <head>
-          	<title>Ejemplo 0 Cesium básico</title>
+          	<title>Ejemplo 1 Cesium básico</title>
           	<meta charset="utf-8" />
           	<meta name="viewport" content="width=device-width, initial-scale=1.0">
           	<meta name="author" content="autor" />
           	<meta name="description" content="descripción página">
           	<meta name="robots" content="index,follow">
-          	<link rel="stylesheet" href="http://betaserver.icgc.cat/cesium/Cesium/Widgets/widgets.css" />
-          	<script src="http://betaserver.icgc.cat/cesium/Cesium/Cesium.js"></script>
-          	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
+          	<link rel="stylesheet" href="Cesium/Widgets/widgets.css" />
+          	<script src="Cesium/Cesium.js"></script>
+          	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
           	<style>
           		#map {
           			position: absolute;
@@ -31,10 +31,7 @@
 
           	<script>
           		$(document).ready(function() {
-          			map = new Cesium.Viewer('map',{
-                          animation: false,
-                          vrButton: true
-                      });
+          			map = new Cesium.Viewer('map');
 
           			//add Properties
 
