@@ -1,0 +1,165 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <style type="text/css">
+            a {text-decoration:none; color: black;}
+        </style>
+
+        <title>
+            Brunch en Barcelona
+        </title>
+
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+        <script type="text/javascript">
+            var map;
+            var local1 = { 
+
+                    lat: 41.37167000991169, 
+                    lng: 2.166489958763123, 
+                    name: 'Brummell Kitchen', img:'Brummell-hotel_6.jpg', 
+                    addr: 'Nou de la Rambla, 174, 08004 Barcelona',
+                    phone: '93 125 86 22' , 
+                    starfood: 'Quiche y Ensalada de Quinoa'
+                };
+            var local2 = { 
+
+                    lat: 41.378342204046454, 
+                    lng: 2.1611791849136357, 
+                    name: 'La Desayuneria', img:'Desayuneria_1.jpg', 
+                    addr: 'Carrer del Comte Borrell, 75, 08015 Barcelona', 
+                    phone: '608 34 16 01' , 
+                    starfood: 'Pankakes'
+            };
+            var local3 = {lat:  41.37328428072469,lng: 2.1654278039932255,name: 'L Angolino', img:'l-angolino.jpg',addr: 'Carrer de Blai, 15, 08004 Barcelona',phone: '936 24 19 44', starfood: 'Huevos rotos'};
+            var local4 = {lat:  41.375894805980536,lng: 2.1621018648147587,name: 'Café Cometa', img:'cometa01.jpg',addr: 'Carrer del Parlament, 20, 08015 Barcelona',phone: '930 07 32 03', starfood: 'Batidos de fruta'};
+            var local5 = {lat:  41.37691926259423,lng: 2.162866294384003,name: 'Federal Café', img:'federal_barcelona.jpg',addr: 'Carrer del Parlament, 39, 08015 Barcelona',phone: '931 87 36 07', starfood: 'Bravas'};
+            var local6 = {lat:  41.37571970077962,lng: 2.161747813224793 ,name: 'The Juicy House', img:'the-juice-house.jpg',addr: 'Carrer del Parlament, 12, 08015 Barcelona',phone: '931 17 15 15', starfood: 'ColdPress juices'};
+            var local7 = {lat:  41.37381364011216,lng: 2.168936133384705,name: 'Bar Rufian', img:'bar-rufian.png',addr: 'Carrer Nou de la Rambla, 123, 08004 Barcelona',phone: '931 80 68 28', starfood: 'Cerveza artesana'};
+            var local8 = {lat:  41.38098875209458,lng: 2.187236845493317,name: 'Brunch & cake by the sea', img:'brunch-cake-by-the-sea.png',addr: 'Passeig de Joan de Borbó, 5, 08003 Barcelona',phone: 'Desconocido', starfood: 'Carrot Cake'};
+            var local9 = {lat:  41.381401322124916,lng: 2.1801880002021794,name: 'The Benedict Barcelona', img:'benedict-bcn.jpg',addr: 'Carrer d en Gignàs, 23, 08002 Barcelona',phone: '932 50 75 11', starfood: 'Huevos Benedictinos'};
+            var local10 = {lat:  41.37767400910851,lng: 2.1714413166046147,name: 'Tropico', img:'tropico.png',addr: 'Carrer del Marquès de Barberà, 24, 08001 Barcelona',phone: '936 67 75 52', starfood: 'Matcha Latte'};
+
+            function initialize() {
+                var mapOptions = {
+                    zoom: 15,
+                    center: new google.maps.LatLng(41.37767400910851, 2.1714413166046147),
+                  //  mapTypeControl: false, Sacar flechas
+                    backgroundColor: 'ffffff',  //Fondo de pantalla mientras el mapa se carga
+                    mapTypeId: google.maps.MapTypeId.ROADMAP  //HYBRID ROADMAP SATELLITE TERRAIN
+                 };
+                map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+                addProduct(local1);
+                addProduct(local2);
+                addProduct(local3);
+                addProduct(local4);
+                addProduct(local5);
+                addProduct(local6);
+                addProduct(local7);
+                addProduct(local8);
+                addProduct(local9);
+                addProduct(local10);
+            }   
+
+
+            google.maps.event.addDomListener(window, 'load', initialize);
+
+            function addProduct(productTemplate) {
+                var point = new google.maps.LatLng(productTemplate.lat,productTemplate.lng);
+                var pOptions = {
+                position: point, 
+                map: map, 
+                title: productTemplate.name
+                };
+                var marker = new google.maps.Marker(pOptions);
+                google.maps.event.addListener(marker, 'click', 	function (event) {
+                var infoOpt = {
+                    content: '<div class="map-local">'
+                                +'<p class="map-local-name">'+productTemplate.name+'</p>'
+                                +'<p><img class="map-local-img" src="'+productTemplate.img +'"/></p>'
+                                +'<p class="map-local-desc">'+'Dirección: '+productTemplate.addr+'</p>'
+                                +'<p class="map-local-desc">'+'Telefono: '+productTemplate.phone+'</p>'
+                                +'<p class="map-local-desc">'+'Producto Estrella: '+productTemplate.starfood+'</p>'
+                                +'<div>'
+                };
+                var infoWin = new google.maps.InfoWindow(infoOpt);
+                infoWin.open(map,marker)
+                });
+            }
+
+
+        </script>
+        <link href="https://fonts.googleapis.com/css?family=Gentium+Basic" rel="stylesheet">
+        <style>
+            ul,ol{list-style:none}
+            h1,h2,h3,h4,h5,h6,pre,code{font-size:1em;}
+            ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset{
+            margin:0;padding:0;line-height:1; list-style:none;}
+            a img,:link img,:visited img, fieldset{border:none;}
+            input[type=submit], input[type=reset], input[type=button] { *filter:chroma(color=#000000); }
+
+
+            @font-face
+            {
+                font-family: "FuturaBold";
+                    src: url("Futura Bold.ttf") format("truetype"),
+            }
+            .header {position: relative; height:150px; }
+            .menu {position: absolute; height:30px; margin-left: 650px; margin-top: 100px; margin-right: 50px; padding: 10px 10px 10px 10px;  align-content: left;  }
+            .menu-items {font-family: 'Futura Bold'; font-size: 22px; font-weight: bold; color: black;  }
+            
+
+            .logo {position: absolute; height: 120px; width:350px; margin-left: 50px; margin-top: 20px;  }
+            .logo-img { height: 120px; width:350px;}
+            
+            
+            .content { margin-left: 50px; margin-right: 50px; width: 1200px; }
+           
+            body {font-family: 'Gentium Basic', serif; font-size:14px; background-color:#d4d4d420;  }
+            h1 { font-size:60px; font-weight: bold; margin-top: 70px; margin-bottom: 20px;  }
+            h2 { font-size:60px; font-weight: bold; margin-top: 70px; margin-bottom: 20px; color:#7d0000; }
+            h3 { font-size:30px; font-weight: bold; margin-top: 20px; margin-bottom: 20px;  }
+            p { font-family: 'Gentium Basic', serif; font-size:20px; }
+           
+    
+            
+            #map-canvas {position:relative; height:800px; width:1200px; margin-bottom:20px; }
+            .map-local{width:200px;}
+            .map-local-img { width:200px;margin-top:5px; margin-bottom:5px; }
+            .map-local-name {font-weight:bold;font-size:20px; color:#7d0000; background-color: #FFFFFF; margin-top:5px; margin-bottom:5px; } 
+            .map-local-desc {font-size:15px; background-color: #FFFFFF; margin-top:5px; margin-bottom:5px; }       
+       
+         
+        
+            
+        </style>
+    </head>
+    
+
+    <body>
+        <div class="header">
+            <div class="logo">
+                
+                    <img class="logo-img" src="header-img.png"/> <!-- LOGO -->
+                </p>
+                    
+            </div>
+            <div class="menu">
+                <p class="menu-items">
+                    <a href="inicio.html" style="text-decoration: none;">inicio</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="locales.html" style="text-decoration: none;">locales</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="este-mes.html" style="text-decoration: none;">este mes</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="cercanos.html" style="text-decoration: none;">cercanos</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; contacto
+                </p>
+            
+            </div>
+        </div>
+        
+        <div class="content">
+            <h1>
+                cercanos
+            </h1>
+            
+            <div id="map-canvas"></div>
+            
+                
+         </div>
+          
+    </body>
+</html>

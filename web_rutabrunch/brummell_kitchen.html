@@ -1,0 +1,210 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <style type="text/css">
+            a {text-decoration:none; color: black;}
+        </style>
+
+        <title>
+            Brunch en Barcelona
+        </title>
+
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+        <script type="text/javascript">
+            var map;
+            var local1 = { 
+
+                    lat: 41.37167000991169, 
+                    lng: 2.166489958763123, 
+                    name: 'Brummell Kitchen', img:'Brummell-hotel_6.jpg', 
+                    desc: 'Brummell Kitchen es el bar restaurante del Hotel Brummell en el barrio de Poblesec en Barcelona donde podrás desayunar, almorzar y cenar' 
+                };
+            var local2 = { 
+
+                    lat: 41.378342204046454, 
+                    lng: 2.1611791849136357, 
+                    name: 'La Desayuneria', img:'Desayuneria_1.jpg', 
+                    desc: 'Cafetería restaurante en Barcelona, sirviendo desayunos nacionales e internacionales y brunch' 
+            };
+
+
+            function initialize() {
+                var mapOptions = {
+                    zoom: 17,
+                    center: new google.maps.LatLng(41.37167000991169, 2.166489958763123),
+                  //  mapTypeControl: false, Sacar flechas
+                    backgroundColor: 'ffffff',  //Fondo de pantalla mientras el mapa se carga
+                    mapTypeId: google.maps.MapTypeId.ROADMAP  //HYBRID ROADMAP SATELLITE TERRAIN
+                 };
+                map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+                addProduct(local1);
+                addProduct(local2);
+            }   
+
+
+            google.maps.event.addDomListener(window, 'load', initialize);
+
+            function addProduct(productTemplate) {
+                var point = new google.maps.LatLng(productTemplate.lat,productTemplate.lng);
+                var pOptions = {
+                position: point, 
+                map: map, 
+                title: productTemplate.name
+                };
+                var marker = new google.maps.Marker(pOptions);
+                google.maps.event.addListener(marker, 'click', 	function (event) {
+                var infoOpt = {
+                    content: '<div class="map-local">'
+                        +'<p class="map-local-name">'+productTemplate.name+'</p>'
+                        +'<p><img class="map-local-img" src="'+productTemplate.img +'"/></p>'
+                        +'<p class="map-local-desc">'+productTemplate.desc+'</p>'
+                        +'<div>'
+                };
+                var infoWin = new google.maps.InfoWindow(infoOpt);
+                infoWin.open(map,marker)
+                });
+            }
+
+
+        </script>
+        <link href="https://fonts.googleapis.com/css?family=Gentium+Basic" rel="stylesheet">
+        <style>
+            ul,ol{list-style:none}
+            h1,h2,h3,h4,h5,h6,pre,code{font-size:1em;}
+            ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset{
+            margin:0;padding:0;line-height:1; list-style:none;}
+            a img,:link img,:visited img, fieldset{border:none;}
+            input[type=submit], input[type=reset], input[type=button] { *filter:chroma(color=#000000); }
+
+
+            @font-face
+            {
+                font-family: "FuturaBold";
+                    src: url("Futura Bold.ttf") format("truetype"),
+            }
+            .header {position: relative; height:150px; }
+            .menu {position: absolute; height:30px; margin-left: 650px; margin-top: 100px; margin-right: 50px; padding: 10px 10px 10px 10px;  align-content: left;  }
+            .menu-items {font-family: 'Futura Bold'; font-size: 22px; font-weight: bold; color: black;  }
+            
+
+            .logo {position: absolute; height: 120px; width:350px; margin-left: 50px; margin-top: 20px;  }
+            .logo-img { height: 120px; width:350px;}
+            
+            
+            .content { margin-left: 50px; margin-right: 50px; width: 1200px; }
+           
+            body {font-family: 'Gentium Basic', serif; font-size:14px; background-color:#d4d4d420;  }
+            h1 { font-size:60px; font-weight: bold; margin-top: 70px; margin-bottom: 20px;  }
+            h2 { font-size:60px; font-weight: bold; margin-top: 70px; margin-bottom: 20px; color:#7d0000; }
+            h3 { font-size:30px; font-weight: bold; margin-top: 20px; margin-bottom: 20px;  }
+            p { font-family: 'Gentium Basic', serif; font-size:20px; }
+           
+    
+            .desc {position:relative;  width: 1200px; height:450px; }
+            .desc-space1 {position:absolute;  top:10px;  }
+            .desc-space2 {position:absolute; top:10px; left:610px;}
+            .desc-txt { margin-bottom: 15px; }
+            .desc-img-hor { width:600px;height:400px; }
+            .desc-img-ver { height:400px; }
+            .desc-space3 {position:absolute;  top:10px;  }
+            .desc-space4 {position:absolute; top:10px; left:335px;  }
+            .desc-space5 {position:absolute; top:10px; left:940px;  }
+
+
+            .details{ position:relative; margin: 10px 10px 30px 10px; border:solid 1px #d2d2d2; padding: 20px 20px 20px 20px; width: 1200px; height: 500px; background-color:#fafafa; }
+            .details-tittle {position:absolute; top:50px; left:750px;font-size:30px ;font-weight:bold; color: black; }
+            .details-box {position:absolute; top:100px; left:750px; }
+            .details-info {font-weight:bold;font-size:20px; color: black}
+            
+            #map-canvas {position:absolute; height:500px; width:700px; margin-bottom:20px; }
+            .map-local{width:150px;}
+            .map-local-img { width:150px;margin-top:5px; margin-bottom:5px; }
+            .map-local-name {font-weight:bold;font-size:20px; color:#7d0000; background-color: #FFFFFF; margin-top:5px; margin-bottom:5px; } 
+            .map-local-desc {font-size:15px; background-color: #FFFFFF; margin-top:5px; margin-bottom:5px; }  
+
+       
+            .bono {position: fixed; bottom:0; right: 0; height: 100px; width:200px; border: 1px solid black; background-color:grey }
+            .bono-txt{ font-family:'Futura Bold'; font-size: 30px; font-weight: bold; color:whitesmoke; margin-top:30px; margin-left:20px;}
+
+            
+        </style>
+    </head>
+    
+
+    <body>
+        <div class="header">
+            <div class="logo">
+                
+                    <img class="logo-img" src="header-img.png"/> <!-- LOGO -->
+                </p>
+                    
+            </div>
+            <div class="menu">
+                <p class="menu-items">
+                    <a href="inicio.html" style="text-decoration: none;">inicio</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="locales.html" style="text-decoration: none;">locales</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="este-mes.html" style="text-decoration: none;">este mes</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="cercanos.html" style="text-decoration: none;">cercanos</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; contacto
+                </p>
+            
+            </div>
+        </div>
+        
+        <div class="content">
+            <h2>
+                Brummell kitchen
+            </h2>
+            <p class="desc-txt">
+                    En el hall del Hotel Brummell se encuentra Brummell Kitchen. Un oasis en el barrio de Poble Sec (Nou de Rambla, 174), 
+                    a la falda de Montjuic. Este hotel boutique está al ladito mismo de The Garage Blume (de hecho sus huéspedes tienen acceso incluido) y es un lugar realmente especial. 
+                    Una decoración cozy y cuidada al milímetro con montones de plantas relucientes y cosas bellas por todas partes. El patio es un espacio luminoso y sereno, con más plantas hermosas y con un pequeño estanque de aire zen. 
+
+            </p>
+            <div class="desc">   
+                <p class="desc-space1">
+                    <img class="desc-img-hor" src="Brummell-hotel_6.jpg"/>
+                </p>
+                <p class="desc-space2">
+                    <img class="desc-img-hor" src="Brummell-hotel_7.jpg"/>
+                </p>
+            </div>
+            <h3>
+                Sugerencias
+            </h3>
+            <p class="desc-txt">
+                    La carta es extensa y está repleta de propuestas deliciosas: huevos pochados con salmón, ramen, tostadas, ensaladas, cold pressed juices… 
+                    Ofrece una amplia selección de cafés artesanales, zumos prensados en frío (cold pressed), productos horneados diariamente, vinos orgánicos y 
+                    locales, y cócteles frescos a base de fruta de temporada. Las combinaciones para hacer del brunch algo memorable son casi infinitas.
+            </p>
+            <div class="desc">   
+                    <p class="desc-space3">
+                        <img class="desc-img-ver" src="huevos-benedictine-hotel-brummell-657x800.jpg"/>
+                    </p>
+                    <p class="desc-space4">
+                        <img class="desc-img-hor" src="ramen-brunch-familia-hotel-brummell-680x510.jpg"/>
+                    </p>
+                    <p class="desc-space5">
+                            <img class="desc-img-ver" src="Brummell-Kitchen_breakfast-buffet-3-e1513069635621.jpg"/>
+                    </p>
+            </div>
+            
+            <div class="details">
+                <p class="details-tittle">
+                    Brummell kitchen 
+                </p>
+                <div class="details-box">   
+                    <p class="details-info">
+                        <span style="color:#7d0000">Horario: </span>  <span style="color:black">7:30AM - 4PM</span>
+                    </p>              
+                    <p class="details-info">
+                        <span style="color:#7d0000">Dirección: </span>  <span style="color:black"> Nou de la Rambla, 174, 08004 Barcelona</span> 
+                    </p>
+                    <p class="details-info">
+                        <span style="color:#7d0000">Teléfono: </span>  <span style="color: black">93 125 86 22</span> 
+                    </p>
+                    <p class="details-info">
+                        <a href="https://www.hotelbrummell.com/es/restaurant-barcelona/" style="text-decoration: none;" target="_blank"><span style="color:#7d0000">Web</span>  </a> 
+                    </p>
+                </div>    
+                <div id="map-canvas"></div>
+            </div>
+          
+    </body>
+</html>

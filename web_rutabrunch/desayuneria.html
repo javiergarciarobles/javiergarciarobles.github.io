@@ -1,0 +1,213 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <style type="text/css">
+            a {text-decoration:none; color: black;}
+        </style>
+
+        <title>
+            Brunch en Barcelona
+        </title>
+
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+        <script type="text/javascript">
+            var map;
+            var local1 = { 
+
+                    lat: 41.37167000991169, 
+                    lng: 2.166489958763123, 
+                    name: 'Brummell Kitchen', img:'Brummell-hotel_6.jpg', 
+                    desc: 'Brummell Kitchen es el bar restaurante del Hotel Brummell en el barrio de Poblesec en Barcelona donde podrás desayunar, almorzar y cenar' 
+                };
+            var local2 = { 
+
+                    lat: 41.378342204046454, 
+                    lng: 2.1611791849136357, 
+                    name: 'La Desayuneria', img:'Desayuneria_1.jpg', 
+                    desc: 'Cafetería restaurante en Barcelona, sirviendo desayunos nacionales e internacionales y brunch' 
+            };
+
+
+            function initialize() {
+                var mapOptions = {
+                    zoom: 17,
+                    center: new google.maps.LatLng(41.378342204046454, 2.1611791849136357),
+                  //  mapTypeControl: false, Sacar flechas
+                    backgroundColor: 'ffffff',  //Fondo de pantalla mientras el mapa se carga
+                    mapTypeId: google.maps.MapTypeId.ROADMAP  //HYBRID ROADMAP SATELLITE TERRAIN
+                 };
+                map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+                addProduct(local1);
+                addProduct(local2);
+            }   
+
+
+            google.maps.event.addDomListener(window, 'load', initialize);
+
+            function addProduct(productTemplate) {
+                var point = new google.maps.LatLng(productTemplate.lat,productTemplate.lng);
+                var pOptions = {
+                position: point, 
+                map: map, 
+                title: productTemplate.name
+                };
+                var marker = new google.maps.Marker(pOptions);
+                google.maps.event.addListener(marker, 'click', 	function (event) {
+                var infoOpt = {
+                    content: '<div class="map-local">'
+                                +'<p class="map-local-name">'+productTemplate.name+'</p>'
+                                +'<p><img class="map-local-img" src="'+productTemplate.img +'"/></p>'
+                                +'<p class="map-local-desc">'+productTemplate.desc+'</p>'
+                                +'<div>'
+                };
+                var infoWin = new google.maps.InfoWindow(infoOpt);
+                infoWin.open(map,marker)
+                });
+            }
+
+
+        </script>
+        <link href="https://fonts.googleapis.com/css?family=Gentium+Basic" rel="stylesheet">
+        <style>
+            ul,ol{list-style:none}
+            h1,h2,h3,h4,h5,h6,pre,code{font-size:1em;}
+            ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset{
+            margin:0;padding:0;line-height:1; list-style:none;}
+            a img,:link img,:visited img, fieldset{border:none;}
+            input[type=submit], input[type=reset], input[type=button] { *filter:chroma(color=#000000); }
+
+
+            @font-face
+            {
+                font-family: "FuturaBold";
+                    src: url("Futura Bold.ttf") format("truetype"),
+            }
+            .header {position: relative; height:150px; }
+            .menu {position: absolute; height:30px; margin-left: 650px; margin-top: 100px; margin-right: 50px; padding: 10px 10px 10px 10px;  align-content: left;  }
+            .menu-items {font-family: 'Futura Bold'; font-size: 22px; font-weight: bold; color: black;  }
+            
+
+            .logo {position: absolute; height: 120px; width:350px; margin-left: 50px; margin-top: 20px;  }
+            .logo-img { height: 120px; width:350px;}
+            
+            
+            .content { margin-left: 50px; margin-right: 50px; width: 1200px; }
+           
+            body {font-family: 'Gentium Basic', serif; font-size:14px; background-color:#d4d4d420;  }
+            h1 { font-size:60px; font-weight: bold; margin-top: 70px; margin-bottom: 20px;  }
+            h2 { font-size:60px; font-weight: bold; margin-top: 70px; margin-bottom: 20px; color:#7d0000; }
+            h3 { font-size:30px; font-weight: bold; margin-top: 20px; margin-bottom: 20px;  }
+            p { font-family: 'Gentium Basic', serif; font-size:20px; }
+           
+    
+            .desc {position:relative;  width: 1200px; height:450px; }
+            .desc-space1 {position:absolute;  top:10px;  }
+            .desc-space2 {position:absolute; top:10px; left:610px;}
+            .desc-txt { margin-bottom: 15px; }
+            .desc-img-hor { width:600px;height:400px; }
+            .desc-img-ver { height:400px; }
+            .desc-space3 {position:absolute;  top:10px;  }
+            .desc-space4 {position:absolute; top:10px; left:610px;  }
+
+
+            .details{ position:relative; margin: 10px 10px 30px 10px; border:solid 1px #d2d2d2; padding: 20px 20px 20px 20px; width: 1200px; height: 500px; background-color:#fafafa; }
+            .details-tittle {position:absolute; top:50px; left:750px;font-size:30px ;font-weight:bold; color: black; }
+            .details-box {position:absolute; top:100px; left:750px; }
+            .details-info {font-weight:bold;font-size:20px; color: black}
+            
+            #map-canvas {position:absolute; height:500px; width:700px; margin-bottom:20px; }
+            .map-local{width:150px;}
+            .map-local-img { width:150px;margin-top:5px; margin-bottom:5px; }
+            .map-local-name {font-weight:bold;font-size:20px; color:#7d0000; background-color: #FFFFFF; margin-top:5px; margin-bottom:5px; } 
+            .map-local-desc {font-size:15px; background-color: #FFFFFF; margin-top:5px; margin-bottom:5px; }       
+       
+            .bono {position: fixed; bottom:0; right: 0; height: 100px; width:200px; border: 1px solid black; background-color:grey }
+            .bono-txt{ font-family:'Futura Bold'; font-size: 30px; font-weight: bold; color:whitesmoke; margin-top:30px; margin-left:20px;}
+
+        
+            
+        </style>
+    </head>
+    
+
+    <body>
+        <div class="header">
+            <div class="logo">
+                
+                    <img class="logo-img" src="header-img.png"/> <!-- LOGO -->
+                </p>
+                    
+            </div>
+            <div class="menu">
+                <p class="menu-items">
+                    <a href="inicio.html" style="text-decoration: none;">inicio</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="locales.html" style="text-decoration: none;">locales</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="este-mes.html" style="text-decoration: none;">este mes</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="cercanos.html" style="text-decoration: none;">cercanos</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; contacto
+                </p>
+            
+            </div>
+        </div>
+        
+        <div class="content">
+            <h2>
+                La Desayunería
+            </h2>
+            <p class="desc-txt">
+                La Desayunería es el único local que serven desayunos desde primera hora de la mañana hasta última hora de la tarde. 
+                Especialistas en Pancakes (tortitas americanas), disponen de la carta de pancakes más amplia del mercado. Su masa y sirope son 
+                caseros con receta propia haciendo de este producto un producto único en todo el territorio nacional. También ofrecen platos salados y opción de brunch.
+
+            </p>
+            <div class="desc">   
+                <p class="desc-space1">
+                    <img class="desc-img-hor" src="Desayuneria_1.jpg"/>
+                </p>
+                <p class="desc-space2">
+                    <img class="desc-img-hor" src="Desayunando-la-desayuneria-7.jpg"/>
+                </p>
+            </div>
+            <h3>
+                Sugerencias
+            </h3>
+            <p class="desc-txt">
+                Los platos en La Desayuneria no decepcionan, son de verdad. Por su sabor, sus ingredientes y preparación, hablamos 
+                de un sitio peculiar y diferente que se esmera en ofrecer recetas distintas. Y tenemos que añadir, que todo es 
+                preparado al momento. Así que si pedís su “Veggie Garden” compuesto de tomate asado, champiñones a la plancha, 
+                cebolla caramelizada y aguacate, no sufráis porque todo es fresco y cortado al momento.
+            </p>
+            <p class="desc-txt">
+                O si por el contrario sois más del pecado carnal y os decantáis por su “Especial Americano Mañanero” compuesto de 
+                2 huevos camperos a la plancha, con 2 pancakes, bacon dulce, salchichitas italianas, patatas fritas, champiñones 
+                asados, tomate a la plancha, judías a la barbacoa y cebolla frita, alucinaréis con todos los ingredientes y os 
+                enamoraréis de las judías dulces caseras, nada de baked beens de bote.
+            </p>
+            <div class="desc">   
+                    <p class="desc-space3">
+                        <img class="desc-img-ver" src="Desayunando-la-desayuneria-4.jpg"/>
+                    </p>
+                    <p class="desc-space4">
+                        <img class="desc-img-hor" src="Desayuneria_2.jpg"/>
+                    </p>
+            </div>
+            
+            <div class="details">
+                <p class="details-tittle">
+                    La Desayunería 
+                </p>
+                <div class="details-box">   
+                    <p class="details-info">
+                        <span style="color:#7d0000">Horario: </span>  <span style="color:black">8:00AM - 3PM</span>
+                    </p>              
+                    <p class="details-info">
+                        <span style="color:#7d0000">Dirección: </span>  <span style="color:black"> Carrer del Comte Borrell, 75, 08015 Barcelona</span> 
+                    </p>
+                    <p class="details-info">
+                        <span style="color:#7d0000">Teléfono: </span>  <span style="color: black">608 34 16 01</span> 
+                    </p>
+                    <p class="details-info">
+                        <a href="http://www.ladesayuneria.com/index.php/es/" style="text-decoration: none;" target="_blank"><span style="color:#7d0000">Web</span>  </a> 
+                    </p>
+                </div>    
+                <div id="map-canvas"></div>
+            </div>
+          
+    </body>
+</html>
