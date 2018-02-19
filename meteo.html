@@ -2,7 +2,7 @@
 
 <head>
     <meta charset='utf-8' />
-    <title>Estaciones Metereologicas</title>
+    <title>Display a map</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet' />
@@ -20,7 +20,7 @@
         .legend p {margin-left: 30px; position: absolute; display: block; top: 0;}
         .legend div {position: relative; }
         .legend div span {border-radius: 50%; display: inline-block; margin-right: 5px; opacity: 0.8;background-color: #d49a66;}
-
+        .guia_estaciones{font-size:9px;}
         .mapboxgl-popup {max-width: 400px;font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;}
 
 
@@ -64,36 +64,36 @@
                 
                 map.addSource("meteo_source", {   //se añade un Source con el identificador id(string), source(object)-> accidentes_source
                     type: "vector",
-                    url: "mapbox://javiergarciarobles.cwn0u2kk"  //lo traduce a la IP del servidor de mapbox para hacerles petición
+                    url: "mapbox://javiergarciarobles.1noe4jz3"  //lo traduce a la IP del servidor de mapbox para hacerles petición
                 });  //fin map source
                 
                 map.addLayer({
                     id:"meteo_Others",
                     type:"circle",
                     source:"meteo_source",
-                    'source-layer':"Estaciones_meteorologicas_GEO-733i32",
+                    'source-layer':"Estaciones_meteorologicas_GEO-6fz7z9",
                     paint: {
                         'circle-radius': 4,
                         'circle-color': {             //Se puede crear un temático
-                            property: "Tipo de es", //Es el nombre del campo que está en la tabla. Idealmente tendría que ser DiaSetmana sin acentos
+                            property: "Tipo", //Es el nombre del campo que está en la tabla. Idealmente tendría que ser DiaSetmana sin acentos
                             type: 'categorical',  //esto se pone para indicar que son valores únicos
                             stops: ["OTHERS", "#000000"]
                             
                         },
                         'circle-opacity': 0.8         //le doy un poco de transparencia
                     }
-                    ,filter: ['!=', 'Tipo de es', acronimo[0]] && ['!=', 'Tipo de es', acronimo[1]] && ['!=', 'Tipo de es', acronimo[2]] && ['!=', 'Tipo de es', acronimo[3]] && ['!=', 'Tipo de es', acronimo[4]]
+                    ,filter: ['!=', 'Tipo', acronimo[0]] && ['!=', 'Tipo', acronimo[1]] && ['!=', 'Tipo', acronimo[2]] && ['!=', 'Tipo', acronimo[3]] && ['!=', 'Tipo', acronimo[4]]
                 });
 
                 map.addLayer({
                     id:"meteo",
                     type:"circle",
                     source:"meteo_source",
-                    'source-layer':"Estaciones_meteorologicas_GEO-733i32",
+                    'source-layer':"Estaciones_meteorologicas_GEO-6fz7z9",
                     paint: {
                         'circle-radius': 4,
                         'circle-color': {             //Se puede crear un temático
-                            property: "Tipo de es", //Es el nombre del campo que está en la tabla. Idealmente tendría que ser DiaSetmana sin acentos
+                            property: "Tipo", //Es el nombre del campo que está en la tabla. Idealmente tendría que ser DiaSetmana sin acentos
                             type: 'categorical',  //esto se pone para indicar que son valores únicos
                             stops: [        //Diferentes categorias
                                 [acronimo[0], colorTipo[0]],
@@ -126,22 +126,34 @@
                 jQuery('#legend').append('<div><span style="background-color:' + '#000000' + ';width:10px;height:10px;margin: 0 5px"></span>' + "OTHERS" + '</div>');
             }
 
+            map.on('mouseenter', 'meteo',function (e) {
+                map.getCanvas().style.cursor = 'pointer';
+            });
+
+            map.on('mouseleave', 'meteo',function (e) {
+                map.getCanvas().style.cursor = '';
+            });
+
             map.on('mousemove', 'meteo',function (e) {
                 map.getCanvas().style.cursor = 'pointer';
             });
 
             map.on('click', 'meteo',function (e) {
                 var coordinates = e.features[0].geometry.coordinates.slice();
-                var features = map.queryRenderedFeatures(e.point,{ layers: ['meteo'] });
-               
+                //var features = map.queryRenderedFeatures(e.point,{ layers: ['meteo'] });
+               //feature.properties[0].Provincia
                 //"Nombre de": "CUACOS DE YUSTE", "Provincia": "CACERES", "Serie comp": "1927-1930", "Tipo de es": "P",
                 new mapboxgl.Popup()
                     .setLngLat(coordinates)
-                    .setHTML(JSON.stringify(features, null, 2))
+                    .setHTML('<p>'+'<b>Provincia</b>: '+e.features[0].properties.Provincia+'</p>'+
+                    '<p>'+'<b>Nombre de Estación</b>: '+e.features[0].properties.Nombre_Estacion+'</p>'+
+                    '<p>'+'<b>Tipo</b>: '+e.features[0].properties.Tipo+'</p>'+
+                    '<p class="guia_estaciones">T - TERMOMETRICA | P - PLUVIOMETRICA | C - COMPLETA'+
+                    '<p class="guia_estaciones">E - EVAPORACION EN TANQUE | S - TEMPERATURA DEL SUELO | R - RADIACION</p>'+
+                    '<p class="guia_estaciones">Y - SYNOPTICA | H - SONDEO | A - AUTOMATICA	</p>'
+                    )
                     .addTo(map);
             });
-
-
 
 
         }); //fin ready Jquery
