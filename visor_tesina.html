@@ -112,10 +112,10 @@
 
 
             icaf_n2 = new L.GeoJSON.AJAX('datos/cemgi.geojson', {
-                maxZoom: 20,
-                minZoom: 14,
+                maxZoom: 25,
+                minZoom: 11,
                 onEachFeature: function (feature, layer) {
-                    popupContent = "<b>" + feature.properties.ICAF082017 + "</b><br>" + feature.properties.ICAF082017 + ": " + feature.properties.PorcForest + "</b>";
+                    popupContent = "<b>" + feature.properties.Freguesia + "</b><br>" + feature.properties.Concelho + ": " + feature.properties.Distrito + "</b>";
                     layer.bindPopup(popupContent);
                 },
                 style: function (feature) {
