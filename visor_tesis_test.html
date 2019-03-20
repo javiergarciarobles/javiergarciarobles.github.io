@@ -2,7 +2,7 @@
 
 <head>
     <meta charset='utf-8' />
-    <title>Display a map</title>
+    <title>VISOR TESINA</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet' />
@@ -26,6 +26,29 @@
 <script>
         $(document).ready(function () {
 
+            esri = L.tileLayer(
+                'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                    maxZoom: 20,
+                    minZoom: 1,
+                    attribution: 'Tiles © Esri',
+                }).addTo(map);
+
+            osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 20,
+                minZoom: 1,
+                attribution: 'OSM'
+            });
+
+            var Hydda_Full = L.tileLayer('https://{s}.tile.openstreetmap.se/hydda/full/{z}/{x}/{y}.png', {
+                maxZoom: 20,
+                attribution: 'Tiles courtesy of <a href="http://openstreetmap.se/" target="_blank">OpenStreetMap Sweden</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            });
+
+            var OpenMapSurfer_Grayscale = L.tileLayer('https://korona.geog.uni-heidelberg.de/tiles/roadsg/x={x}&y={y}&z={z}', {
+                maxZoom: 20,
+                attribution: 'Imagery from <a href="http://giscience.uni-hd.de/">GIScience Research Group @ University of Heidelberg</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            });
+
             mapboxgl.accessToken = 'pk.eyJ1IjoiamF2aWVyZ2FyY2lhcm9ibGVzIiwiYSI6ImNqY2pnbWVqaDJibDcycXBhbXByam80NWYifQ.fG-IMWMCOBFDylPhkWe3eQ';
             var map = new mapboxgl.Map({
                 container: 'map',
@@ -36,6 +59,18 @@
             });
             map.addControl(new mapboxgl.NavigationControl());
 
+            var baseMaps = {
+                "Orto_esri": esri,
+                "Mapa_osm": osm,
+                "Mapa_Hydda": Hydda_Full,
+                "OMS Grayscale": OpenMapSurfer_Grayscale
+            };
+
+
+            controlCapas = L.control.layers(baseMaps, overlayMaps);
+            controlCapas.addTo(map);
+            controlEscala = L.control.scale();
+            controlEscala.addTo(map);
 
         }); //fin ready Jquery
     </script>
