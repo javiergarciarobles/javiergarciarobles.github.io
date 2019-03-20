@@ -58,60 +58,56 @@
                 attribution: 'Tiles courtesy of <a href="http://openstreetmap.se/" target="_blank">OpenStreetMap Sweden</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             });
 
-            var OpenMapSurfer_Grayscale = L.tileLayer('https://korona.geog.uni-heidelberg.de/tiles/roadsg/x={x}&y={y}&z={z}', {
-                maxZoom: 20,
-                attribution: 'Imagery from <a href="http://giscience.uni-hd.de/">GIScience Research Group @ University of Heidelberg</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            });
 
-            farmacias = new L.GeoJSON.AJAX('datos/farmacias.geojson', {
-                maxZoom: 20,
-                minZoom: 14,
-                onEachFeature: function (feature, layer) {
-                    popupContent = "<b>" + feature.properties.NOM + "</b><br>" + feature.properties.CARRCADAST + " " + feature.properties.DOORNUM + "</b>";
-                    layer.bindPopup(popupContent);
-                },
-                pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng, {           //En vez que genere un marker le ponemos las propiedades que queremos
-                        radius: 4,
-                        fillColor: "#00ff00",
-                        color: "#000000",
-                        weight: 2,
-                        opacity: 1,
-                        fillOpacity: 0.8
-                    });
-                }
-            })
+//            farmacias = new L.GeoJSON.AJAX('datos/farmacias.geojson', {
+//                maxZoom: 20,
+//                minZoom: 14,
+//                onEachFeature: function (feature, layer) {
+//                    popupContent = "<b>" + feature.properties.NOM + "</b><br>" + feature.properties.CARRCADAST + " " + feature.properties.DOORNUM + "</b>";
+//                    layer.bindPopup(popupContent);
+//                },
+//                pointToLayer: function (feature, latlng) {
+//                    return L.circleMarker(latlng, {           //En vez que genere un marker le ponemos las propiedades que queremos
+//                        radius: 4,
+//                        fillColor: "#00ff00",
+//                        color: "#000000",
+//                        weight: 2,
+//                        opacity: 1,
+//                        fillOpacity: 0.8
+//                    });
+//                }
+//            })
 
-            cementerio = new L.GeoJSON.AJAX('datos/cemgi.geojson', {
-                maxZoom: 20,
-                minZoom: 14,
-                onEachFeature: function (feature, layer) {
-                    popupContent = "<b>" + feature.properties.AREA + "</b><br>" + feature.properties.PERIMETER + ": " + feature.properties.CEMGI_ID + "</b>";
-                    layer.bindPopup(popupContent);
-                },
-                style: function (feature) {
-                    if (feature.properties.AREA > 100) {
-                        return {           //En vez que genere un marker le ponemos las propiedades que queremos
-                            fillColor: "#00ff00",
-                            color: "#000000",
-                            weight: 1,
-                            opacity: 1,
-                            fillOpacity: 0.8
-                        };
-                    } else {
-                        return {           //En vez que genere un marker le ponemos las propiedades que queremos
-                            fillColor: "#ffff00",
-                            color: "#000000",
-                            weight: 1,
-                            opacity: 1,
-                            fillOpacity: 0.8
-                        };
-                    }
-                }
-            }).addTo(map);
+//            cementerio = new L.GeoJSON.AJAX('datos/cemgi.geojson', {
+//                maxZoom: 20,
+//                minZoom: 14,
+//                onEachFeature: function (feature, layer) {
+//                    popupContent = "<b>" + feature.properties.AREA + "</b><br>" + feature.properties.PERIMETER + ": " + feature.properties.CEMGI_ID + "</b>";
+//                    layer.bindPopup(popupContent);
+//                },
+//                style: function (feature) {
+//                    if (feature.properties.AREA > 100) {
+//                        return {           //En vez que genere un marker le ponemos las propiedades que queremos
+//                            fillColor: "#00ff00",
+//                            color: "#000000",
+//                            weight: 1,
+//                            opacity: 1,
+//                            fillOpacity: 0.8
+//                        };
+//                    } else {
+//                        return {           //En vez que genere un marker le ponemos las propiedades que queremos
+//                            fillColor: "#ffff00",
+//                            color: "#000000",
+//                            weight: 1,
+//                            opacity: 1,
+//                            fillOpacity: 0.8
+//                        };
+//                    }
+//                }
+//            }).addTo(map);
 
 
-            icaf_n2 = new L.GeoJSON.AJAX('datos/ICAF_Algarve_NIVEL2.geojson', {
+            dif_icaf_n2_17_18 = new L.GeoJSON.AJAX('datos/ICAF_Algarve_NIVEL2.geojson', {
                 maxZoom: 25,
                 minZoom: 11,
                 onEachFeature: function (feature, layer) {
@@ -168,13 +164,10 @@
                 "Orto_esri": esri,
                 "Mapa_osm": osm,
                 "Mapa_Hydda": Hydda_Full,
-                "OMS Grayscale": OpenMapSurfer_Grayscale
             };
 
             var overlayMaps = {
-                "Farmacias": farmacias,
-                "Cementerio": cementerio,
-                "ICAF": icaf_n2
+                "DIF ICAF 2017-2018": dif_icaf_n2_17_18
             };
 
             controlCapas = L.control.layers(baseMaps, overlayMaps);
@@ -183,7 +176,7 @@
             controlEscala.addTo(map);
 
             var searchControl = new L.Control.Search({
-                layer: farmacias,
+                layer: dif_icaf_n2_1718,
                 propertyName: 'NOM',
                 circleLocation: true
             });
