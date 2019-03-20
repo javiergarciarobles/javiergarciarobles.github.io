@@ -115,21 +115,45 @@
                 maxZoom: 25,
                 minZoom: 11,
                 onEachFeature: function (feature, layer) {
-                    popupContent = "<b>" + feature.properties.Freguesia + "</b><br>" + feature.properties.Concelho + ": " + feature.properties.Distrito + "</b>";
+                    popupContent = "<b>" + "Freguesia: "+ feature.properties.Freguesia + "</b><br>" + "Concelho: " + feature.properties.Concelho + "</b><br>" + "Distrito: " + feature.properties.Distrito + "</b>";
                     layer.bindPopup(popupContent);
                 },
                 style: function (feature) {
-                    if (feature.properties.PorcForest > 50) {
+                    if (feature.properties.Dif17_18 <= -0.5) {  // DEGRADACIÓN SEVERA
                         return {           //En vez que genere un marker le ponemos las propiedades que queremos
-                            fillColor: "#00ff00",
+                            fillColor: "#ff2200",
                             color: "#000000",
                             weight: 1,
                             opacity: 1,
                             fillOpacity: 0.8
                         };
-                    } else {
+                    }else if (feature.properties.Dif17_18 > -0.5 && feature.properties.Dif17_18 < -0.25) { // DEGRADACIÓN MODERADA
                         return {           //En vez que genere un marker le ponemos las propiedades que queremos
-                            fillColor: "#ffff00",
+                            fillColor: "#ff9900",
+                            color: "#000000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        };
+                    }else if (feature.properties.Dif17_18 < 0.5 && feature.properties.Dif17_18 > 0.25) { // MEJORA MODERADA
+                        return {           //En vez que genere un marker le ponemos las propiedades que queremos
+                            fillColor: "#7aab00",
+                            color: "#000000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        };
+                    }else if (feature.properties.Dif17_18 >= 0.5 ) { // MEJORA MODERADA
+                        return {           //En vez que genere un marker le ponemos las propiedades que queremos
+                            fillColor: "#006100",
+                            color: "#000000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        };                
+                    } else {
+                        return {           //SIN CAMBIOS
+                            fillColor: "#ffffbe",
                             color: "#000000",
                             weight: 1,
                             opacity: 1,
