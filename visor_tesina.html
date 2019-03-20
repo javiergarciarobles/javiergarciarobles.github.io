@@ -82,7 +82,7 @@
                 }
             })
 
-            cementerio = new L.GeoJSON.AJAX('datos/ICAF_Algarve_NIVEL2.geojson', {
+            cementerio = new L.GeoJSON.AJAX('datos/cemgi.geojson', {
                 maxZoom: 20,
                 minZoom: 14,
                 onEachFeature: function (feature, layer) {
@@ -111,7 +111,7 @@
             }).addTo(map);
 
 
-            icaf_n2 = new L.GeoJSON.AJAX('datos/cemgi.geojson', {
+            icaf_n2 = new L.GeoJSON.AJAX('datos/ICAF_Algarve_NIVEL2.geojson', {
                 maxZoom: 25,
                 minZoom: 11,
                 onEachFeature: function (feature, layer) {
