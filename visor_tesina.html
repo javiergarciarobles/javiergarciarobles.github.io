@@ -73,59 +73,64 @@
             });
 
 
-//            farmacias = new L.GeoJSON.AJAX('datos/farmacias.geojson', {
-//                maxZoom: 20,
-//                minZoom: 14,
-//                onEachFeature: function (feature, layer) {
-//                    popupContent = "<b>" + feature.properties.NOM + "</b><br>" + feature.properties.CARRCADAST + " " + feature.properties.DOORNUM + "</b>";
-//                    layer.bindPopup(popupContent);
-//                },
-//                pointToLayer: function (feature, latlng) {
-//                    return L.circleMarker(latlng, {           //En vez que genere un marker le ponemos las propiedades que queremos
-//                        radius: 4,
-//                        fillColor: "#00ff00",
-//                        color: "#000000",
-//                        weight: 2,
-//                        opacity: 1,
-//                        fillOpacity: 0.8
-//                    });
-//                }
-//            })
-
-//            cementerio = new L.GeoJSON.AJAX('datos/cemgi.geojson', {
-//                maxZoom: 20,
-//                minZoom: 14,
-//                onEachFeature: function (feature, layer) {
-//                    popupContent = "<b>" + feature.properties.AREA + "</b><br>" + feature.properties.PERIMETER + ": " + feature.properties.CEMGI_ID + "</b>";
-//                    layer.bindPopup(popupContent);
-//                },
-//                style: function (feature) {
-//                    if (feature.properties.AREA > 100) {
-//                        return {           //En vez que genere un marker le ponemos las propiedades que queremos
-//                            fillColor: "#00ff00",
-//                            color: "#000000",
-//                            weight: 1,
-//                            opacity: 1,
-//                            fillOpacity: 0.8
-//                        };
-//                    } else {
-//                        return {           //En vez que genere un marker le ponemos las propiedades que queremos
-//                            fillColor: "#ffff00",
-//                            color: "#000000",
-//                            weight: 1,
-//                            opacity: 1,
-//                            fillOpacity: 0.8
-//                        };
-//                    }
-//                }
-//            }).addTo(map);
+            dif_icaf_n2_86_17 = new L.GeoJSON.AJAX('datos/ICAF_Algarve_NIVEL2.geojson', {
+                maxZoom: 25,
+                minZoom: 11,
+                onEachFeature: function (feature, layer) {
+                    popupContent = "<b>Freguesia: </b>"+ feature.properties.Freguesia + "<br>" + "<b>Concelho: </b>" + feature.properties.Concelho + "<br>" + "<b>Distrito: </b>" + feature.properties.Distrito + "<br>" + "<b>ICAF Jul. 1987: </b>" + feature.properties.ICAF071986 + "<br>" + "<b>ICAF Ago. 2017: </b>" + feature.properties.ICAF082017 + "<br>" + "<b>Dif ICAF 1986-2017: </b>" + feature.properties.Dif86_17;
+                    layer.bindPopup(popupContent);
+                },
+                style: function (feature) {
+                    if (feature.properties.Dif86_17 <= -0.5) {  // DEGRADACIÓN SEVERA
+                        return {           //En vez que genere un marker le ponemos las propiedades que queremos
+                            fillColor: "#ff2200",
+                            color: "#000000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        };
+                    }else if (feature.properties.Dif86_17 > -0.5 && feature.properties.Dif17_18 < -0.25) { // DEGRADACIÓN MODERADA
+                        return {           //En vez que genere un marker le ponemos las propiedades que queremos
+                            fillColor: "#ff9900",
+                            color: "#000000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        };
+                    }else if (feature.properties.Dif86_17 < 0.5 && feature.properties.Dif17_18 > 0.25) { // MEJORA MODERADA
+                        return {           //En vez que genere un marker le ponemos las propiedades que queremos
+                            fillColor: "#7aab00",
+                            color: "#000000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        };
+                    }else if (feature.properties.Dif86_17 >= 0.5 ) { // MEJORA ALTA
+                        return {           //En vez que genere un marker le ponemos las propiedades que queremos
+                            fillColor: "#006100",
+                            color: "#000000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        };                
+                    } else {
+                        return {           //SIN CAMBIOS
+                            fillColor: "#ffffbe",
+                            color: "#000000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        };
+                    }
+                }
+            }).addTo(map);
 
 
             dif_icaf_n2_17_18 = new L.GeoJSON.AJAX('datos/ICAF_Algarve_NIVEL2.geojson', {
                 maxZoom: 25,
                 minZoom: 11,
                 onEachFeature: function (feature, layer) {
-                    popupContent = "<b>" + "Freguesia: "+ feature.properties.Freguesia + "</b><br>" + "Concelho: " + feature.properties.Concelho + "</b><br>" + "Distrito: " + feature.properties.Distrito + "</b>";
+                    popupContent = "<b>Freguesia: </b>"+ feature.properties.Freguesia + "<br>" + "<b>Concelho: </b>" + feature.properties.Concelho + "<br>" + "<b>Distrito: </b>" + feature.properties.Distrito + "<br>" + "<b>ICAF Ago. 2017: </b>" + feature.properties.ICAF082017 + "<br>" + "<b>ICAF Ago. 2018: </b>" + feature.properties.ICAF082018 + "<br>" + "<b>Dif ICAF 2017-2018: </b>" + feature.properties.Dif86_17;
                     layer.bindPopup(popupContent);
                 },
                 style: function (feature) {
@@ -181,6 +186,7 @@
             };
 
             var overlayMaps = {
+                "DIF ICAF 2017-2018": dif_icaf_n2_86_17,
                 "DIF ICAF 2017-2018": dif_icaf_n2_17_18
             };
 
@@ -206,8 +212,9 @@
                 jQuery('#legend').append('<div><span style="background-color:' + '#000000' + ';width:10px;height:10px;margin: 0 5px"></span>' + "OTHERS" + '</div>');
             }
 
-            creaLeyenda();
+            
         });
+        creaLeyenda();
     </script>
 </head>
 
