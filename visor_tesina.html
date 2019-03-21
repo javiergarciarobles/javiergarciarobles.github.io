@@ -2,7 +2,7 @@
 
 <head>
     <title>Visor ICAF - Algarve</title>
-    <meta charset="utf-8" />
+    <meta http-equiv=”Content-Type” content=”text/html; charset=ISO-8859-1″ />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="autor" />
     <meta name="description" content="descripción página">
@@ -110,7 +110,7 @@
                 maxZoom: 25,
                 minZoom: 11,
                 onEachFeature: function (feature, layer) {
-                    popupContent = "<b>" + "Freguesia: "+ feature.properties.Freguesia + "</b><br>" + "Concelho: " + feature.properties.Concelho + "</b><br>" + "Distrito: " + feature.properties.Distrito + "</b><br>" + "ICAF 86: " + feature.properties.ICAF071986 + "</b><br>" + "ICAF 17: " + feature.properties.ICAF082017 + "</b>";
+                    popupContent = "<b>Freguesia: </b>"+ feature.properties.Freguesia + "<br>" + "<b>Concelho: </b>" + feature.properties.Concelho + "<br>" + "<b>Distrito: </b>" + feature.properties.Distrito + "<br>" + "<b>ICAF 1986: </b>" + feature.properties.ICAF071986 + "</b><br>" + "<b>ICAF 2017: </b>" + feature.properties.ICAF082017 + "</b>";
                     layer.bindPopup(popupContent);
                 },
                 style: function (feature) {
@@ -120,7 +120,7 @@
                             color: "#000000",
                             weight: 1,
                             opacity: 1,
-                            fillOpacity: 0.8
+                            fillOpacity: 0.6
                         };
                     }else if (feature.properties.Dif86_17 > -0.5 && feature.properties.Dif17_18 < -0.25) { // DEGRADACIÓN MODERADA
                         return {           //En vez que genere un marker le ponemos las propiedades que queremos
@@ -128,7 +128,7 @@
                             color: "#000000",
                             weight: 1,
                             opacity: 1,
-                            fillOpacity: 0.8
+                            fillOpacity: 0.6
                         };
                     }else if (feature.properties.Dif86_17 < 0.5 && feature.properties.Dif17_18 > 0.25) { // MEJORA MODERADA
                         return {           //En vez que genere un marker le ponemos las propiedades que queremos
@@ -136,7 +136,7 @@
                             color: "#000000",
                             weight: 1,
                             opacity: 1,
-                            fillOpacity: 0.8
+                            fillOpacity: 0.6
                         };
                     }else if (feature.properties.Dif86_17 >= 0.5 ) { // MEJORA MODERADA
                         return {           //En vez que genere un marker le ponemos las propiedades que queremos
@@ -144,7 +144,7 @@
                             color: "#000000",
                             weight: 1,
                             opacity: 1,
-                            fillOpacity: 0.8
+                            fillOpacity: 0.6
                         };                
                     } else {
                         return {           //SIN CAMBIOS
@@ -152,7 +152,7 @@
                             color: "#000000",
                             weight: 1,
                             opacity: 1,
-                            fillOpacity: 0.8
+                            fillOpacity: 0.6
                         };
                     }
                 }
@@ -162,7 +162,8 @@
                 maxZoom: 25,
                 minZoom: 11,
                 onEachFeature: function (feature, layer) {
-                    popupContent = "<b>" + "Freguesia: "+ feature.properties.Freguesia + "</b><br>" + "Concelho: " + feature.properties.Concelho + "</b><br>" + "Distrito: " + feature.properties.Distrito + "</b>";
+                    popupContent = "<b>Freguesia: </b>"+ feature.properties.Freguesia + "<br>" + "<b>Concelho: </b>" + feature.properties.Concelho + "<br>" + "<b>Distrito: </b>" + feature.properties.Distrito + "<br>" + "<b>ICAF 2017: </b>" + feature.properties.ICAF082017 + "</b><br>" + "<b>ICAF 2018: </b>" + feature.properties.ICAF082018 + "</b>";
+                    //popupContent = "<b>" + "Freguesia: "+ feature.properties.Freguesia + "</b><br>" + "Concelho: " + feature.properties.Concelho + "</b><br>" + "Distrito: " + feature.properties.Distrito + "</b>";
                     layer.bindPopup(popupContent);
                 },
                 style: function (feature) {
@@ -172,7 +173,7 @@
                             color: "#000000",
                             weight: 1,
                             opacity: 1,
-                            fillOpacity: 0.8
+                            fillOpacity: 0.6
                         };
                     }else if (feature.properties.Dif17_18 > -0.5 && feature.properties.Dif17_18 < -0.25) { // DEGRADACIÓN MODERADA
                         return {           //En vez que genere un marker le ponemos las propiedades que queremos
@@ -180,7 +181,7 @@
                             color: "#000000",
                             weight: 1,
                             opacity: 1,
-                            fillOpacity: 0.8
+                            fillOpacity: 0.6
                         };
                     }else if (feature.properties.Dif17_18 < 0.5 && feature.properties.Dif17_18 > 0.25) { // MEJORA MODERADA
                         return {           //En vez que genere un marker le ponemos las propiedades que queremos
@@ -188,7 +189,7 @@
                             color: "#000000",
                             weight: 1,
                             opacity: 1,
-                            fillOpacity: 0.8
+                            fillOpacity: 0.6
                         };
                     }else if (feature.properties.Dif17_18 >= 0.5 ) { // MEJORA MODERADA
                         return {           //En vez que genere un marker le ponemos las propiedades que queremos
@@ -196,7 +197,7 @@
                             color: "#000000",
                             weight: 1,
                             opacity: 1,
-                            fillOpacity: 0.8
+                            fillOpacity: 0.6
                         };                
                     } else {
                         return {           //SIN CAMBIOS
@@ -204,7 +205,7 @@
                             color: "#000000",
                             weight: 1,
                             opacity: 1,
-                            fillOpacity: 0.8
+                            fillOpacity: 0.6
                         };
                     }
                 }
