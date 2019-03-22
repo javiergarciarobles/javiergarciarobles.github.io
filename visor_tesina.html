@@ -73,6 +73,216 @@
             });
 
 
+
+            dif_icaf_n1_F_86_17 = new L.GeoJSON.AJAX('datos/ICAF_Algarve_NIVEL1_Faro.geojson', {
+                maxZoom: 25,
+                minZoom: 11,
+                onEachFeature: function (feature, layer) {
+                    popupContent = "<b>Freguesia: </b>"+ feature.properties.Freguesia + "<br>" + "<b>Concelho: </b>" + feature.properties.Concelho + "<br>" + "<b>Distrito: </b>" + feature.properties.Distrito + "<br>" + "<b>ICAF Jul. 1987: </b>" + feature.properties.ICAF071986 + "<br>" + "<b>ICAF Ago. 2017: </b>" + feature.properties.ICAF082017 + "<br>" + "<b>Dif ICAF 1986-2017: </b>" + feature.properties.Dif86_17;
+                    layer.bindPopup(popupContent);
+                },
+                style: function (feature) {
+                    if (feature.properties.Dif86_17 <= -0.5) {  // DEGRADACIÓN SEVERA
+                        return {           //En vez que genere un marker le ponemos las propiedades que queremos
+                            fillColor: "#ff2200",
+                            color: "#000000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        };
+                    }else if (feature.properties.Dif86_17 > -0.5 && feature.properties.Dif17_18 < -0.25) { // DEGRADACIÓN MODERADA
+                        return {           //En vez que genere un marker le ponemos las propiedades que queremos
+                            fillColor: "#ff9900",
+                            color: "#000000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        };
+                    }else if (feature.properties.Dif86_17 < 0.5 && feature.properties.Dif17_18 > 0.25) { // MEJORA MODERADA
+                        return {           //En vez que genere un marker le ponemos las propiedades que queremos
+                            fillColor: "#7aab00",
+                            color: "#000000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        };
+                    }else if (feature.properties.Dif86_17 >= 0.5 ) { // MEJORA ALTA
+                        return {           //En vez que genere un marker le ponemos las propiedades que queremos
+                            fillColor: "#006100",
+                            color: "#000000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        };                
+                    } else {
+                        return {           //SIN CAMBIOS
+                            fillColor: "#ffffbe",
+                            color: "#000000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        };
+                    }
+                }
+            }).addTo(map);
+
+            dif_icaf_n1_B_86_17 = new L.GeoJSON.AJAX('datos/ICAF_Algarve_NIVEL1_Beja.geojson', {
+                maxZoom: 25,
+                minZoom: 11,
+                onEachFeature: function (feature, layer) {
+                    popupContent = "<b>Freguesia: </b>"+ feature.properties.Freguesia + "<br>" + "<b>Concelho: </b>" + feature.properties.Concelho + "<br>" + "<b>Distrito: </b>" + feature.properties.Distrito + "<br>" + "<b>ICAF Jul. 1987: </b>" + feature.properties.ICAF071986 + "<br>" + "<b>ICAF Ago. 2017: </b>" + feature.properties.ICAF082017 + "<br>" + "<b>Dif ICAF 1986-2017: </b>" + feature.properties.Dif86_17;
+                    layer.bindPopup(popupContent);
+                },
+                style: function (feature) {
+                    if (feature.properties.Dif86_17 <= -0.5) {  // DEGRADACIÓN SEVERA
+                        return {           //En vez que genere un marker le ponemos las propiedades que queremos
+                            fillColor: "#ff2200",
+                            color: "#000000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        };
+                    }else if (feature.properties.Dif86_17 > -0.5 && feature.properties.Dif17_18 < -0.25) { // DEGRADACIÓN MODERADA
+                        return {           //En vez que genere un marker le ponemos las propiedades que queremos
+                            fillColor: "#ff9900",
+                            color: "#000000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        };
+                    }else if (feature.properties.Dif86_17 < 0.5 && feature.properties.Dif17_18 > 0.25) { // MEJORA MODERADA
+                        return {           //En vez que genere un marker le ponemos las propiedades que queremos
+                            fillColor: "#7aab00",
+                            color: "#000000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        };
+                    }else if (feature.properties.Dif86_17 >= 0.5 ) { // MEJORA ALTA
+                        return {           //En vez que genere un marker le ponemos las propiedades que queremos
+                            fillColor: "#006100",
+                            color: "#000000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        };                
+                    } else {
+                        return {           //SIN CAMBIOS
+                            fillColor: "#ffffbe",
+                            color: "#000000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        };
+                    }
+                }
+            }).addTo(map);
+
+            dif_icaf_n1_F_17_18 = new L.GeoJSON.AJAX('datos/ICAF_Algarve_NIVEL1_Faro.geojson', {
+                maxZoom: 25,
+                minZoom: 11,
+                onEachFeature: function (feature, layer) {
+                    popupContent = "<b>Freguesia: </b>"+ feature.properties.Freguesia + "<br>" + "<b>Concelho: </b>" + feature.properties.Concelho + "<br>" + "<b>Distrito: </b>" + feature.properties.Distrito + "<br>" + "<b>ICAF Ago. 2017: </b>" + feature.properties.ICAF082017 + "<br>" + "<b>ICAF Ago. 2018: </b>" + feature.properties.ICAF082018 + "<br>" + "<b>Dif ICAF 2017-2018: </b>" + feature.properties.Dif17_18;
+                    layer.bindPopup(popupContent);
+                },
+                style: function (feature) {
+                    if (feature.properties.Dif17_18 <= -0.5) {  // DEGRADACIÓN SEVERA
+                        return {           //En vez que genere un marker le ponemos las propiedades que queremos
+                            fillColor: "#ff2200",
+                            color: "#000000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        };
+                    }else if (feature.properties.Dif17_18 > -0.5 && feature.properties.Dif17_18 < -0.25) { // DEGRADACIÓN MODERADA
+                        return {           //En vez que genere un marker le ponemos las propiedades que queremos
+                            fillColor: "#ff9900",
+                            color: "#000000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        };
+                    }else if (feature.properties.Dif17_18 < 0.5 && feature.properties.Dif17_18 > 0.25) { // MEJORA MODERADA
+                        return {           //En vez que genere un marker le ponemos las propiedades que queremos
+                            fillColor: "#7aab00",
+                            color: "#000000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        };
+                    }else if (feature.properties.Dif17_18 >= 0.5 ) { // MEJORA ALTA
+                        return {           //En vez que genere un marker le ponemos las propiedades que queremos
+                            fillColor: "#006100",
+                            color: "#000000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        };                
+                    } else {
+                        return {           //SIN CAMBIOS
+                            fillColor: "#ffffbe",
+                            color: "#000000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        };
+                    }
+                }
+            }).addTo(map);
+
+            dif_icaf_n1_B_17_18 = new L.GeoJSON.AJAX('datos/ICAF_Algarve_NIVEL1_Beja.geojson', {
+                maxZoom: 25,
+                minZoom: 11,
+                onEachFeature: function (feature, layer) {
+                    popupContent = "<b>Freguesia: </b>"+ feature.properties.Freguesia + "<br>" + "<b>Concelho: </b>" + feature.properties.Concelho + "<br>" + "<b>Distrito: </b>" + feature.properties.Distrito + "<br>" + "<b>ICAF Ago. 2017: </b>" + feature.properties.ICAF082017 + "<br>" + "<b>ICAF Ago. 2018: </b>" + feature.properties.ICAF082018 + "<br>" + "<b>Dif ICAF 2017-2018: </b>" + feature.properties.Dif17_18;
+                    layer.bindPopup(popupContent);
+                },
+                style: function (feature) {
+                    if (feature.properties.Dif17_18 <= -0.5) {  // DEGRADACIÓN SEVERA
+                        return {           //En vez que genere un marker le ponemos las propiedades que queremos
+                            fillColor: "#ff2200",
+                            color: "#000000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        };
+                    }else if (feature.properties.Dif17_18 > -0.5 && feature.properties.Dif17_18 < -0.25) { // DEGRADACIÓN MODERADA
+                        return {           //En vez que genere un marker le ponemos las propiedades que queremos
+                            fillColor: "#ff9900",
+                            color: "#000000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        };
+                    }else if (feature.properties.Dif17_18 < 0.5 && feature.properties.Dif17_18 > 0.25) { // MEJORA MODERADA
+                        return {           //En vez que genere un marker le ponemos las propiedades que queremos
+                            fillColor: "#7aab00",
+                            color: "#000000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        };
+                    }else if (feature.properties.Dif17_18 >= 0.5 ) { // MEJORA ALTA
+                        return {           //En vez que genere un marker le ponemos las propiedades que queremos
+                            fillColor: "#006100",
+                            color: "#000000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        };                
+                    } else {
+                        return {           //SIN CAMBIOS
+                            fillColor: "#ffffbe",
+                            color: "#000000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        };
+                    }
+                }
+            }).addTo(map);
+
+
             dif_icaf_n2_86_17 = new L.GeoJSON.AJAX('datos/ICAF_Algarve_NIVEL2.geojson', {
                 maxZoom: 25,
                 minZoom: 11,
@@ -186,8 +396,12 @@
             };
 
             var overlayMaps = {
-                "DIF ICAF 1986-2017": dif_icaf_n2_86_17,
-                "DIF ICAF 2017-2018": dif_icaf_n2_17_18
+                "NIVEL 1 Faro - DIF ICAF 1986-2017": dif_icaf_n1_F_86_17,
+                "NIVEL 1 Beja - DIF ICAF 1986-2017": dif_icaf_n1_B_86_17,
+                "NIVEL 1 Faro - DIF ICAF 2017-2018": dif_icaf_n1_F_17_18,
+                "NIVEL 1 Beja - DIF ICAF 2017-2018": dif_icaf_n1_B_17_18,    
+                "NIVEL 2 - DIF ICAF 1986-2017": dif_icaf_n2_86_17,
+                "NIVEL 2 - DIF ICAF 2017-2018": dif_icaf_n2_17_18
             };
 
             controlCapas = L.control.layers(baseMaps, overlayMaps);
